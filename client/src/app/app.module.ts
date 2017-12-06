@@ -5,12 +5,14 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { AuthService } from '../services/auth.service';
+import { ConfigAcComponent } from './config-ac/config-ac.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    ConfigAcComponent
   ],
   imports: [
     BrowserModule,

@@ -8,7 +8,8 @@ const configACSchema = new Schema({
   mode: Number,
   fanSpeed: Number,
   swing: Number,
-  calendar: Date
+  calendar: Date,
+  ledtest: String //creado solo para el test del Led
 },{
   timestamps:{
     createdAt: 'created_at',
