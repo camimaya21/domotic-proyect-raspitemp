@@ -13,9 +13,10 @@ const MongoStore = require('connect-mongo')(session);
 const cors = require('cors');
 const app = express();
 
-mongoose.connect(process.env.DBURL).then(() =>{
-  console.log(`Connected to DB: ${process.env.DBURL}`);
-});
+mongoose.connect(process.env.DBURL,{useMongoClient:true}).then(() =>{
+  console.log("Connected to db: " + process.env.DBURL);
+  console.log("HOLI")
+})
 
 //corps
 const whitelist = [
