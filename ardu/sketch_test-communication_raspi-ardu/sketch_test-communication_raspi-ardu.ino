@@ -12,6 +12,7 @@ void loop() {
         Serial.println("Respuesta de Arduino I'm ON");
       }else if (c == 'L'){
           digitalWrite(LED_BUILTIN, LOW);
+          Serial.println("Respuesta de Arduino I'm OFF");
       }
   }
 }

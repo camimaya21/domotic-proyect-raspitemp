@@ -1,35 +1,42 @@
 const express = require('express');
 const arduinoRoutes = express.Router();
 const ConfigAC = require('../models/ConfigAC')
+var SerialPort = require('serialport');
 
-//Connected with Arduino via SerialPort
-// const arduinoSerialPort = '/dev/ttyACM0';
-// const fs = require('fs');
-// const serialport = require('serialport');
-// const serialPort = new serialport.SerialPort(arduinoSerialPort,
-// {//Listening on the serial port for data coming from Arduino over USB
-// 	parser: serialport.parsers.readline(';')
-// });
+var myPort;
 
-
-const serialport = require("serialport");
-const SerialPort  = serialport.SerialPort;
-let myPort;
 
 // Auto connect to the right serial port
-serialport.list(function (err, ports) {
-	ports.forEach(function(port) {
-		if(port.manufacturer.indexOf("duino") != -1){
-			myPort = new SerialPort(port.comName,{
-			baudrate: 115200,
-			parser: serialport.parsers.readline(";") //Listener
-			});
-			console.log("Port found: " + port.comName);
-		}
-	});
+// var arduPort;
+// SerialPort.list(function (er, ports){
+// 	ports.forEach(function(port){
+// 		if(port.vendorId == '2a03'){
+// 			arduPort = port.comName;
+// 			console.log(arduPort);
+// 		}
+// 	})
+// });
+
+var port = new SerialPort('/dev/ttyACM0', function (err) {
+  if (err) {
+    return console.log('Error: ', err.message);
+  }
+});
+//testing communication
+port.write('Hola', function(err) {
+  if (err) {
+    return console.log('Error on write: ', err.message);
+  }
+  console.log('message written');
 });
 
-arduinoRoutes.post('/controlardu', (req, res, next) =>{
+const Readline = SerialPort.parsers.Readline;
+const parser = port.pipe(new Readline({ delimiter: '\r\n' }));
+parser.on('data', console.log);
+
+
+arduinoRoutes.post('/test', (req, res, next) =>{
+	console.log("TEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 	const newTest = new ConfigAC({
 		ledtest: req.body.ledtest
 	})
@@ -40,12 +47,12 @@ arduinoRoutes.post('/controlardu', (req, res, next) =>{
 	});
 
 	function led(newTest){
-			if (newTest === 'H'){
+			if (newTest.ledtest === 'H'){
 				console.log("Sending data to Arduino = ON")
-				myPort.write('H')
-			} else if (newTest === 'L') {
+				port.write('H')
+			} else if (newTest.ledtest === 'L') {
 				console.log("Sending data to Arduino = OFF")
-				myPort.write('L')
+				port.write('L')
 			}
 		}
 
