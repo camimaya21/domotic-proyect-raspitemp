@@ -45,6 +45,7 @@ arduinoRoutes.post('/test', (req, res, next) =>{
 		if (err) {return res.status(500).json(err)}
 		return res.status(200).json(newTest)
 	});
+	console.log(newTest)
 	led(newTest)
 	function led(newTest){
 			if (newTest.ledtest === 'H'){
