@@ -16,7 +16,7 @@ const app = express();
 mongoose.connect(process.env.DBURL,{useMongoClient:true}).then(() =>{
   console.log("Connected to db: " + process.env.DBURL);
   console.log("HOLI")
-})
+}).catch((err) => console.log(err))
 
 //corps
 const whitelist = [

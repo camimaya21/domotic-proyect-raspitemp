@@ -45,7 +45,7 @@ arduinoRoutes.post('/test', (req, res, next) =>{
 		if (err) {return res.status(500).json(err)}
 		return res.status(200).json(newTest)
 	});
-
+	led(newTest)
 	function led(newTest){
 			if (newTest.ledtest === 'H'){
 				console.log("Sending data to Arduino = ON")
