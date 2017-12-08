@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const authRoutes = require('./routes/auth');
 const arduinoRoutes = require('./routes/arduinoRoutes');
+// const tempGraphRoutes = require('./routes/tempGraphRoutes');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const cors = require('cors');
@@ -55,6 +56,7 @@ require('./passport')(app);
 
 app.use('/auth', authRoutes);
 app.use('/', arduinoRoutes);
+// app.use('/', tempGraphRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

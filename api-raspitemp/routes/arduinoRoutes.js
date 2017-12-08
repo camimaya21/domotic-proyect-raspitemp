@@ -1,27 +1,18 @@
 const express = require('express');
 const arduinoRoutes = express.Router();
-const ConfigAC = require('../models/ConfigAC')
+const ConfigAC = require('../models/ConfigAC');
+const Proyector = require('../models/Proyector');
 var SerialPort = require('serialport');
 
 var myPort;
 
-
-// Auto connect to the right serial port
-// var arduPort;
-// SerialPort.list(function (er, ports){
-// 	ports.forEach(function(port){
-// 		if(port.vendorId == '2a03'){
-// 			arduPort = port.comName;
-// 			console.log(arduPort);
-// 		}
-// 	})
-// });
-
+//new serial port
 var port = new SerialPort('/dev/ttyACM0', function (err) {
   if (err) {
     return console.log('Error: ', err.message);
   }
 });
+
 //testing communication
 port.write('Hola', function(err) {
   if (err) {
@@ -30,13 +21,13 @@ port.write('Hola', function(err) {
   console.log('message written');
 });
 
-const Readline = SerialPort.parsers.Readline;
-const parser = port.pipe(new Readline({ delimiter: '\r\n' }));
-parser.on('data', console.log);
+let Readline = SerialPort.parsers.Readline;
+let parser = port.pipe(new Readline);
+//parser.on('data', console.log);
 
-
+// ====== Led Test ======
 arduinoRoutes.post('/test', (req, res, next) =>{
-	console.log("TEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+	console.log("LED TEST!!!!!!!!!!!!!!!!!!!!!!!");
 	const newTest = new ConfigAC({
 		ledtest: req.body.ledtest
 	})
@@ -47,6 +38,7 @@ arduinoRoutes.post('/test', (req, res, next) =>{
 	});
 	console.log(newTest)
 	led(newTest)
+
 	function led(newTest){
 			if (newTest.ledtest === 'H'){
 				console.log("Sending data to Arduino = ON")
@@ -56,7 +48,32 @@ arduinoRoutes.post('/test', (req, res, next) =>{
 				port.write('L')
 			}
 		}
+  })
 
-})
+  arduinoRoutes.post('/proyector', (req, res, next) =>{
+    console.log("TEST PROYECTOR de Marc!!!!!!!!!!");
+    const testProyector = new Proyector({
+      state: req.body.state
+    })
+
+    testProyector.save( (err) => {
+      if (err) {return res.status(500).json(err)}
+      return res.status(200).json(testProyector)
+    });
+    console.log(testProyector);
+    proyect(testProyector)
+
+    function proyect(testProyector){
+      console.log("JESUS", testProyector);
+      if (testProyector.state == '0'){
+        console.log("Sending test proyector");
+        port.write('0')
+      }
+    }
+
+
+  });
+
+
 
 module.exports = arduinoRoutes;
