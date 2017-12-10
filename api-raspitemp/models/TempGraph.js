@@ -2,9 +2,9 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const tempGraphSchema = new Schema({
-  temperture: Number,
-  humidity: Number,
-  date: Date  
+  temperature: String,
+  humidity: String,
+  date: Date
 },{
   timestamps:{
     createdAt: 'created_at',
