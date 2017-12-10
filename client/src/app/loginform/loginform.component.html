@@ -1,0 +1,13 @@
+<h2>Wellcome to Raspitemp</h2>
+<h3>Get ready to control your Home from your mobile</h3>
+<br>
+<form >
+  <h2> Login </h2>
+  <label> Username </label>
+  <input type="text" [(ngModel)]="formInfo.username" name="username"/>
+  <br>
+  <label> Password </label>
+  <input type="password" [(ngModel)]="formInfo.password" name="password"/>
+
+  <button (click)="login()"> login </button>
+</form>

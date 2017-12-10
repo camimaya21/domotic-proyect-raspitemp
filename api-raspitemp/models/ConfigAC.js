@@ -5,7 +5,7 @@ const FAN = require('./fan.js')
 
 const configACSchema = new Schema({
   room: Number,
-  state: { type: Number, enum: [0, 1], default: 0 },
+  state: { type: String},// enum: [0, 1], default: 0 },
   setTemp: { type: Number, min: 18, max: 30, default: 25 },
   mode: { type: Number, enum: MODES, default: 4 },
   fanSpeed: { type: Number, enum: FAN, default: 6 },

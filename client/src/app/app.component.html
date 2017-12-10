@@ -1,7 +1,9 @@
 <div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-
+  <ul>
+  <li><a [routerLink]="['/']">Home</a></li>
+  <li><a [routerLink]="['/user']">User Profile</a></li>
+  <li><a [routerLink]="['/login']">Login</a></li>
+  <li><a [routerLink]="['/signup']">Signup</a></li>
+  </ul>
+  <router-outlet></router-outlet>
 </div>
-<app-login-form></app-login-form>

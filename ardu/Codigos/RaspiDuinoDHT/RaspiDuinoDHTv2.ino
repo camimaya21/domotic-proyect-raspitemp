@@ -1,35 +1,35 @@
 /*
-  Se han usado las librerías de Rob Tillaart (rob.tillaart@gmail.com)
-  encontradas en GitHub en la 
-  url=https://github.com/RobTillaart/Arduino/tree/master/libraries/
-  Nombre de la libreria = DHTlib
-  version=0.1.24  
+  Se han usado las librerías de DHT Written by Mark Ruys, mark@paracas.nl.
+  encontradas en GitHub en la
+  url=https://github.com/markruys/arduino-DHT
+  Nombre de la libreria = DHT
 */
-#include <dht.h>
-#define DHT_PIN 4//Pin de lectura 4
-dht DHT;//Objeto del sensor
- 
-void setup() {
-  //Inicializacion del puerto serie.
+
+#include "DHT.h"
+
+DHT dht;
+
+void setup()
+{
   Serial.begin(9600);
- 
- 
-}
- 
+  dht.setup(4); // data pin 4
+  Serial.println("Connected with Arduino");
+ }
+
 void loop() {
- 
- 
-  int dato = DHT.read22(DHT_PIN);//Lectura del dato.
 
-  Serial.print("{\"temperature\":");
-  Serial.print(DHT.temperature);  
-  Serial.print(",");
-  Serial.print("\"humidity\":");
-  Serial.print(DHT.humidity);
-  Serial.println("}\n");
+  delay(dht.getMinimumSamplingPeriod());
 
-  //delay(300000);//esperamos 5 minutos.
- //delay(60000);//esperamos 1 minuto.
- //delay(30000);//esperamos 30 segundos.
- delay(3000);//esperamos 10 segundos.
+  float humidity = dht.getHumidity();
+  float temperature = dht.getTemperature();
+
+// JSON-formatted:
+  String jsonSerial = "{\"temperature\":";
+  jsonSerial += temperature;
+  jsonSerial +=",\"humidity\":";
+  jsonSerial += humidity;
+  jsonSerial +="}";
+
+// enviamos datos por serial:
+  Serial.println(jsonSerial);
 }

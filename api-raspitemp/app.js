@@ -3,14 +3,17 @@ const express = require('express');
 const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
+const passport = require('passport');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const debug = require('debug')("angularauth:"+path.basename(__filename).split('.')[0]);
 const mongoose = require('mongoose');
 const authRoutes = require('./routes/auth');
 const arduinoRoutes = require('./routes/arduinoRoutes');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const cors = require('cors');
+
 const app = express();
 
 mongoose.connect(process.env.DBURL,{useMongoClient:true}).then(() =>{
@@ -47,11 +50,14 @@ app.use(session({
   secret: process.env.COOKIE_SECRET,
   resave: false,
   saveUninitialized: true,
+  cookie : { httpOnly: true, maxAge: 60*60*24*365 },
   store: new MongoStore( { mongooseConnection: mongoose.connection })
 }))
 
-
-require('./passport')(app);
+require('./passport/serializers');
+require('./passport/localStrategy');
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/auth', authRoutes);
 app.use('/', arduinoRoutes);

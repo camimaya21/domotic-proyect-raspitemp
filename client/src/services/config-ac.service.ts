@@ -12,7 +12,7 @@ const BASE_URL = `${BASE_DOMAIN}/test`;
 export class ConfigAcService {
 
   constructor(private http: Http) { }
-  sendOrder(ledtest:string){
+  sendOrder(room:Number, state:Number, setTemp:Number, mode:Number, fanSpeed:Number, swing:Number, ledtest:string){
 
   }
 }

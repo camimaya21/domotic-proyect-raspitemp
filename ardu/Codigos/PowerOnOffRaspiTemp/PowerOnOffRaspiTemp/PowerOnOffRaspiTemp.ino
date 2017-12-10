@@ -7,7 +7,7 @@ int isOn;
 
 void setup()
 {
-  Serial.begin(115200);
+  Serial.begin(9600);
   #ifdef DYIRDAIKIN_SOFT_IR
   irdaikin.begin(3);
   #else
@@ -23,9 +23,11 @@ void setup()
   irdaikin.sendCommand();  
   irdaikin.description(); 
   isOn = 0;*/
+ Serial.println("I'm ready");
 }
 
 void loop() {
+     
      if (Serial.available()) { //Si está disponible
          char state = Serial.read();
          if (state == '1') {
@@ -34,26 +36,21 @@ void loop() {
              irdaikin.setMode(0);
              irdaikin.setFan(4);//FAN speed to MAX
              irdaikin.setTemp(25);
-             Serial.print("\n\nTurn On\n\n"); 
-             delay(3000);
+             Serial.println("\n\nTurn On\n\n"); 
              irdaikin.sendCommand();       
+             delay(3000);
              //irdaikin.description();
-             //delay(3000);            
-             //Serial.println("\n\nExecute Command!\n\n");
-             //delay(60000);
          }
          else if (state == '0'){
              irdaikin.off(); 
-             Serial.print("\n\nTurn Off\n\n"); 
-             delay(3000);
-             irdaikin.sendCommand();       
+             Serial.println("\n\nTurn Off\n\n");              
+             irdaikin.sendCommand();   
+             delay(3000);    
              //irdaikin.description();
              delay(3000);            
-             //pythonSerial.println("\n\nExecute Command!\n\n");
-             //delay(60000);
-         }
+             }
          else {
-          Serial.print("\n\nNo se ha recibido un caracter correcto\n\n");
+          Serial.println("\n\nNo se ha recibido un caracter correcto\n\n");
          }
       
      }

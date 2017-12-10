@@ -1,0 +1,25 @@
+<h2>
+  Join to the tech revolution - Raspitemp
+</h2>
+
+<form >
+  <h2> Signup </h2>
+  <br>
+  <label> Name </label>
+  <input type="text" [(ngModel)]="formInfo.name" name="name">
+  <br>
+  <label> Email </label>
+  <input type="text" [(ngModel)]="formInfo.email" name=email>
+  <br>
+  <label> Username </label>
+  <input type="text" [(ngModel)]="formInfo.username" name="username"/>
+  <br>
+  <label> Password </label>
+  <input type="password" [(ngModel)]="formInfo.password" name="password"/>
+  <br>
+  <label> City </label>
+  <input type="text" [(ngModel)]="formInfo.city" name="city">
+  <br>
+
+  <button (click)="signup()"> signup </button>
+</form>
