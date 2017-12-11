@@ -30,6 +30,10 @@ let Readline = SerialPort.parsers.Readline;
 let parser = port.pipe(new Readline({ delimiter: '\r\n' }));
 parser.on('data', (data)=> {
   console.log(data);
+  console.log(typeof data);
+  var tempData =  JSON.parse(data);
+  console.log(tempData);
+  //  console.log("tempData: "+typeof tempData);
 });
 
 // port.open((err) => {
@@ -51,7 +55,7 @@ parser.on('data', (data)=> {
 //       }
 //     })
 //   }
-// })
+// })r
 
 
 
