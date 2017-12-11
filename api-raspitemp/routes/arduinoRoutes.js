@@ -8,6 +8,8 @@ const TempGraph = require('../models/TempGraph');
 const request = require('request');
 const moment = require('moment');
 const SerialPort = require('serialport');
+mongoose.plugin(require('mongoose-list'),{searchFields: ['createdAt']})
+
 
 //new serial port Connection
 const portName = '/dev/ttyACM0'
@@ -28,80 +30,55 @@ port.write('Hola', (err) => {
 // Reading and parser data from Arduino
 let Readline = SerialPort.parsers.Readline;
 let parser = port.pipe(new Readline({ delimiter: '\r\n' }));
-parser.on('data', (data)=> {
-  console.log(data);
-  console.log(typeof data);
-  var tempData =  JSON.parse(data);
-  console.log(tempData);
-  //  console.log("tempData: "+typeof tempData);
-});
-
-// port.open((err) => {
-//   if (err) {
-//     return console.log('Error on write: ', err.message);
-//   } else {
-//     console.log("Arduino says Hi - Successfull Connection");
-//     port.on('data', (sensorData) =>{
-//       var tempData = JSON.parse(sensorData);
-//       if (tempData.temperature.valido){
-//     console.log("temperature:" + tempData.temperature.valor + "ºC")
-//       }else{
-//         console.log("Temperature: ERROR!!")
-//       }
-//       if (tempData.humidity.valido){
-//     console.log("humidity:" + tempData.humidity.valor + "%")
-//       }else{
-//         console.log("Humidity: ERROR!!")
-//       }
-//     })
-//   }
-// })r
-
-
-
-// parser.on('data', (data)=>{
-//    console.log("entro ======" + data)
-//         console.log(typeof data);
-//         var datosSerie = JSON.parse(data);
-//         console.log("de que puto tipo eres ====>" + typeof datosSerie);
-//         // // Humedad
-//         // if (datosSerie.humidity.valido){
-//         //     console.log("Humedad: " + datosSerie.humidity.valor + "%"  );
-//         // } else {
-//         //     console.log("Humedad: ERROR!!")
-//         // }
-//         //
-//         // // Temperatura
-//         // if (datosSerie.temperature.valido){
-//         //     console.log("Temperatura: " + datosSerie.temperature.valor + "°C"  );
-//         // } else {
-//         //     console.log("Temperatura: ERROR!!")
-//         // }
-//  })
 
 
 // ===== Temperature & Humidity RealTime ======
 
-// arduinoRoutes.post('/realtime', (req, res, next) =>{
-// var str = '';
-// parser.on('data', function(data) {
-//   str += data;
-//   console.log(typeof data);
+  parser.on('data', data => {
+    var tempData =  JSON.parse(data);
+    console.log(tempData);
+    console.log(tempData.temperature);
+    console.log(tempData.humidity);
+
+    const newData = new TempGraph ({
+      temperature : tempData.temperature,
+      humidity : tempData.humidity
+    })
+
+    newData.save()
+    .then(newData => {
+      if (err) {
+        return res.status(500).json({ message: 'Something went wrong' });
+      }
+      res.status(200).json(newData);
+    })
+  });
+
+
+arduinoRoutes.get('/realtime', (req, res, err) =>{
+
+  TempGraph.list({limit: 10, sort: {'created_at' : -1} },function(err,count,results){
+    console.log(results);
+//     Tweet.find({}, { limit: 10}, { sort: { 'created_at' : -1 } }, function(err, post) {
+//   console.log( post );
 // });
-//
-// parser.on('data', function(str) {
-//   var newData = JSON.parse(str);
-//   console.log(typeof newData);
-//   const newDataT = new TempGraph({
-//     temperature,
-//     humidity
-//   })
-//
-//  TempGraph.save(newDataT)
-//
-//   //Send the Mongo query here
-//   });
-// });
+    if (err) {return res.status(500).json(err)}
+    return res.status(200).json(results)
+ })
+
+// TempGraph.find({}, { limit: 5 }, function(err, res) {
+// if (err)  {return res.status(500).json(err)}
+// return res.status(200).json(res)
+// })
+
+  // .then(newData => {
+  //   if (err) {
+  //     return res.status(500).json({ message: 'Something went wrong' });
+  //   }
+  //   res.status(200).json(req.newData);
+  // })
+
+});
 
 //======= AC Config ========
 
@@ -124,7 +101,6 @@ arduinoRoutes.post('/controller', (req, res, next) =>{
     }else if (newOrder.state === '0'){ //"Sending order to turn OFF the AC"
       port.write('0')
     }
-//    port.read()
   }
 })
 

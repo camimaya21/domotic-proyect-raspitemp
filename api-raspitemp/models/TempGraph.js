@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
+const listMongoose = mongoose.plugin(require('mongoose-list'),{searchFields: ['createdAt']})
 
 const tempGraphSchema = new Schema({
   temperature: String,
