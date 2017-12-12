@@ -8,6 +8,8 @@ const TempGraph = require('../models/TempGraph');
 const request = require('request');
 const moment = require('moment');
 const SerialPort = require('serialport');
+const path = require('path');
+const debug = require('debug')("angularauth:"+path.basename(__filename).split('.')[0]);
 mongoose.plugin(require('mongoose-list'),{searchFields: ['createdAt']})
 
 
@@ -43,7 +45,7 @@ let parser = port.pipe(new Readline({ delimiter: '\r\n' }));
     const newData = new TempGraph ({
       temperature : tempData.temperature,
       humidity : tempData.humidity
-    })
+   })
 
     newData.save()
     .then(newData => {
@@ -56,22 +58,14 @@ let parser = port.pipe(new Readline({ delimiter: '\r\n' }));
 
 
 arduinoRoutes.get('/realtime', (req, res, err) =>{
-
   TempGraph.list({limit: 10, sort: {'created_at' : -1} },function(err,count,results){
     console.log(results);
 
     if (err) {return res.status(500).json(err)}
     return res.status(200).json(results)
  })
-
-  // .then(newData => {
-  //   if (err) {
-  //     return res.status(500).json({ message: 'Something went wrong' });
-  //   }
-  //   res.status(200).json(req.newData);
-  // })
-
 });
+
 
 //======= AC Config ========
 

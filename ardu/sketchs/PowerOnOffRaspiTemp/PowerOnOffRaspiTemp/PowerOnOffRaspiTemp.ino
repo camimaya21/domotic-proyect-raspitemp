@@ -33,7 +33,7 @@ void loop() {
          if (state == '1') {
              irdaikin.on();
              irdaikin.setSwing_off();
-             irdaikin.setMode(0);
+             irdaikin.setMode(3);
              irdaikin.setFan(4);//FAN speed to MAX
              irdaikin.setTemp(25);
              Serial.println("\n\nTurn On\n\n"); 

@@ -13,7 +13,6 @@ void setup()
 {
   Serial.begin(9600);
   dht.setup(4); // data pin 4
-  Serial.println("Connected with Arduino");
  }
 
 void loop() {

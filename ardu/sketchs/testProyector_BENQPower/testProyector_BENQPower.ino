@@ -19,14 +19,16 @@ void setup()
 }
 
 void loop() {
-  irsend.sendNEC(BENQPower, 32); // hex value, 32 bits
-  delay(5000);
-
-  //get values from the IR receiver and output to serial
-
-   if (irrecv.decode(&results)) {
-    Serial.println(results.value, HEX);
-    irrecv.resume(); // Receive the next value
+  if (Serial.available()) {
+    irsend.sendNEC(BENQPower, 32); // hex value, 32 bits
+    delay(5000);
+  
+    //get values from the IR receiver and output to serial
+  
+     if (irrecv.decode(&results)) {
+      Serial.println(results.value, HEX);
+      irrecv.resume(); // Receive the next value
+    }
   }
 }
 

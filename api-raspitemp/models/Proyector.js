@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const proyectorSchema = new Schema({
-  state: Number
+  state: String
 },{
   timestamps:{
     createdAt: 'created_at',

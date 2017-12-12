@@ -1,13 +1,22 @@
+//Angular
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
-import { AppComponent } from './app.component';
+
+//Services
 import { AuthService } from '../services/auth.service';
 import { IsLoggedInService } from '../services/isLoggedIn.canactivate.service';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { RealTimeDataService } from '../services/realtimedata.service';
+import { ConfigAcService } from '../services/config-ac.service';
+
+//Routes
 import { RouterModule } from '@angular/router';
 import { routes } from './routes';
+
+//Components
+import { AppComponent } from './app.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginformComponent } from './loginform/loginform.component';
 import { SignupformComponent } from './signupform/signupform.component';
 import { HomeComponent } from './home/home.component';
@@ -37,7 +46,12 @@ import { RealtimeComponent } from './realtime/realtime.component';
     HttpModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [AuthService, IsLoggedInService],
+  providers: [
+    AuthService,
+    IsLoggedInService,
+    RealTimeDataService,
+    ConfigAcService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

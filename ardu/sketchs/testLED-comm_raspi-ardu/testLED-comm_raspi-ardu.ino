@@ -1,6 +1,6 @@
 void setup() {
 pinMode(LED_BUILTIN, OUTPUT);
-Serial.begin(9600);       //Inicializo el puerto serial a 9600 baudios
+Serial.begin(9600);  //Inicializo el puerto serial a 9600 baudios
 //Serial.println("Arduino Ready");
 }
 

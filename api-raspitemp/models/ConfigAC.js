@@ -11,7 +11,7 @@ const configACSchema = new Schema({
   fanSpeed: { type: Number, enum: FAN, default: 6 },
   swing: { type: Number, enum: [0, 1], default: 0},
   calendar: Date,
-  ledtest: { type: String, enum: ['H', 'L'], default:'H' } //creado solo para el test del Led
+  ledtest: { type: String, enum: ['H', 'L'], default:'L' } //creado solo para el test del Led
 },{
   timestamps:{
     createdAt: 'created_at',
