@@ -5,23 +5,31 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { AuthService } from '../services/auth.service';
 import { IsLoggedInService } from '../services/isLoggedIn.canactivate.service';
-import { ConfigAcComponent } from './config-ac/config-ac.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { RouterModule } from '@angular/router';
 import { routes } from './routes';
 import { LoginformComponent } from './loginform/loginform.component';
 import { SignupformComponent } from './signupform/signupform.component';
 import { HomeComponent } from './home/home.component';
 import { UserprofileComponent } from './userprofile/userprofile.component';
+import { TestledComponent } from './testled/testled.component';
+import { ProyectorComponent } from './proyector/proyector.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { RealtimeComponent } from './realtime/realtime.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ConfigAcComponent,
+    DashboardComponent,
     LoginformComponent,
     SignupformComponent,
     HomeComponent,
-    UserprofileComponent
+    UserprofileComponent,
+    TestledComponent,
+    ProyectorComponent,
+    NavbarComponent,
+    RealtimeComponent
   ],
   imports: [
     BrowserModule,

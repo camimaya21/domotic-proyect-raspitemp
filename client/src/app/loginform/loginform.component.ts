@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../services/auth.service';
+import { Router , ActivatedRoute} from '@angular/router';
+import { Observable } from 'rxjs/Observable';
 
 interface LoginForm{
   username:string;
@@ -17,15 +19,16 @@ export class LoginformComponent {
     password: ""
   }
 
-  constructor(public auth:AuthService) { }
+  constructor(public auth:AuthService, public router: Router, public route: ActivatedRoute) { }
 
   login(){
     const {username, password} = this.formInfo;
     if (username != "" && password != ""){
-      console.log(`Login with ${username} ${password}`)
       this.auth.login(username, password)
       .map(user => console.log(user))
-      .subscribe();
+      .subscribe((user)=> {
+        this.router.navigate([''])
+      })
     } else {
       console.log("You need to provide a username and a password")
     }

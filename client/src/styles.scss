@@ -1,1 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+
+// colors
+$bgcolor: #004951;
+$bgcolorHover: #05614A;
+$white: #fff;
+$colorOn: #0DC983;
+$colorOff: #1E565C;
+$colorh2: #5E8C91;
+$colorBorder: #327C7E;
+$colorP: #74BEB9;
+$divData: #131313;
+$colorH2: HSBA(0, 0, 0, 20%);
+$shadow: 1px 3px 6x #313131;
+
+
+body{
+  background-color: $bgcolor;
+  margin-top: 60px;
+  h1, h2, h3, label, p{
+    color: $white;
+  }
+}

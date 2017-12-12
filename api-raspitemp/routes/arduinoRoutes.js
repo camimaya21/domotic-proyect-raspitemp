@@ -59,17 +59,10 @@ arduinoRoutes.get('/realtime', (req, res, err) =>{
 
   TempGraph.list({limit: 10, sort: {'created_at' : -1} },function(err,count,results){
     console.log(results);
-//     Tweet.find({}, { limit: 10}, { sort: { 'created_at' : -1 } }, function(err, post) {
-//   console.log( post );
-// });
+
     if (err) {return res.status(500).json(err)}
     return res.status(200).json(results)
  })
-
-// TempGraph.find({}, { limit: 5 }, function(err, res) {
-// if (err)  {return res.status(500).json(err)}
-// return res.status(200).json(res)
-// })
 
   // .then(newData => {
   //   if (err) {

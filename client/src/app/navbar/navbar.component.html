@@ -1,0 +1,22 @@
+<nav *ngIf="!user" style="text-align:center">
+  <ul class="menu">
+  <li><a [routerLink]="['/']">Home</a></li>
+  <li><a [routerLink]="['/login']">Login</a></li>
+  <li><a [routerLink]="['/signup']">Signup</a></li>
+  </ul>
+</nav>
+
+<nav *ngIf="user" style="text-align:center">
+  <ul class="menu">
+  <li><a [routerLink]="['/']">Home</a></li>
+  <li> <i class="fa fa-bars" aria-hidden="true"></i>
+    <ul>
+      <li><a [routerLink]="['/user']">User Profile</a></li>
+      <li><a [routerLink]="['/dashboard']">Dashboard</a></li>
+      <li><a [routerLink]="['/realtime']">RealTime</a></li>
+      <li><a [routerLink]="['/test']">Test</a></li>
+      <li><a href="#" (click)="logout()">Logout</a></li>
+    </ul>
+  </li>
+  </ul>
+</nav>
