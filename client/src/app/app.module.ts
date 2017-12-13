@@ -26,6 +26,8 @@ import { ProyectorComponent } from './proyector/proyector.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RealtimeComponent } from './realtime/realtime.component';
 
+//Others
+import { ChartsModule } from 'ng2-charts/ng2-charts';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,7 @@ import { RealtimeComponent } from './realtime/realtime.component';
     BrowserModule,
     FormsModule,
     HttpModule,
+    ChartsModule,
     RouterModule.forRoot(routes)
   ],
   providers: [

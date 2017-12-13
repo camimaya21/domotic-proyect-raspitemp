@@ -20,9 +20,9 @@ private options:object ={ withCredentials:true };
     return Observable.throw(e.json().message);
   }
 
-  public getDataT(realtime) {
+  public getDataT() {
      console.log("The data is coming!!!!!!!!!!!!!!!!")
-     return this.http.get(`${BASE_URL}/${realtime}`, this.options)
+     return this.http.get(`${BASE_URL}/realtime`, this.options)
        .map((res) => res.json())
        .catch(this.handleError)
    }

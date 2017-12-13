@@ -17,7 +17,8 @@ void setup()
 
 void loop() {
 
-  delay(dht.getMinimumSamplingPeriod());
+  //delay(dht.getMinimumSamplingPeriod());
+  delay(3000);
 
   float humidity = dht.getHumidity();
   float temperature = dht.getTemperature();
@@ -31,4 +32,5 @@ void loop() {
 
 // enviamos datos por serial:
   Serial.println(jsonSerial);
+
 }
