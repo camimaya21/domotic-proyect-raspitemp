@@ -11,8 +11,12 @@ const BASE_URL = `${BASE_DOMAIN}/test`;
 @Injectable()
 export class ConfigAcService {
 
+  public order:any;
+  private options:object ={ withCredentials:true };
+
   constructor(private http: Http) { }
-  sendOrder(room:Number, state:Number, setTemp:Number, mode:Number, fanSpeed:Number, swing:Number, ledtest:string){
+  
+  public sendOrderLed(ledtest:string){
 
   }
 }

@@ -1,3 +1,4 @@
-<script src="node_modules/chart.js/src/chart.js"></script>
-<canvas baseChart width="400" height="100" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
-      </canvas>
+<div>
+  <canvas baseChart width="400" height="400" [datasets]="lineChartData" [chartType]="'line'"  [legend]="'true'">
+  </canvas>
+</div>
