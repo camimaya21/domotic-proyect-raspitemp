@@ -46,9 +46,11 @@ parser.on('data', data => {
   console.log(tempData.temperature);
   console.log(tempData.humidity);
 
+  let currentDate = new Date()
   const newData = new TempGraph({
     temperature: tempData.temperature,
-    humidity: tempData.humidity
+    humidity: tempData.humidity,
+    fecha: currentDate.getHours()+":"+currentDate.getMinutes()+":"+currentDate.getSeconds()    
   })
 
   newData.save()

@@ -16,10 +16,7 @@ export class RealtimeComponent implements OnInit{
     {data: [], label: '%'},
   ];
   //public lineChartLabels: Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-  public lineChartLabels: Array<any> = [
-    {data: []}
-  ];
-  public printData: Array<number>;
+  public lineChartLabels: Array<any> = ["","","","","","","","","","","","","","","","","","","","","","",""];
   public lineChartColors: Array<any> = [
     { // grey
       backgroundColor: 'rgba(148,159,177,0.2)',
@@ -74,12 +71,13 @@ export class RealtimeComponent implements OnInit{
       .map(data => {
         let temperature = data.map(t => Number(t.temperature));
         let humidity = data.map(t => Number(t.humidity));
-        let date = data.map(t => t.created_at);
+        let date = data.map(t => t.fecha);
         return {
           temperature, humidity, date
         };
       })
       .subscribe(data => {
+    
         this.lineChartData =  [
           {data: [...this.lineChartData[0].data, ...data.temperature[data.temperature.length-1]],  label: 'C'},
           {data: [...this.lineChartData[1].data, ...data.humidity[data.humidity.length-1]],  label: '%'},
@@ -87,6 +85,7 @@ export class RealtimeComponent implements OnInit{
        this.lineChartLabels = [...this.lineChartLabels, ...data.date];
        console.log(this.lineChartData);
        console.log(this.lineChartLabels);
+       console.log(typeof this.lineChartLabels[2])
       })
   }
 

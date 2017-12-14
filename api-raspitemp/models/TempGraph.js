@@ -5,7 +5,7 @@ const listMongoose = mongoose.plugin(require('mongoose-list'),{searchFields: ['c
 const tempGraphSchema = new Schema({
   temperature: String,
   humidity: String,
-  date: Date
+  fecha: String
 },{
   timestamps:{
     createdAt: 'created_at',
