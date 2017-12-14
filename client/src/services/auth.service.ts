@@ -30,9 +30,9 @@ export class AuthService {
     return user;
   }
 
-  private handleError(e) {
+  private handleError(error) {
     console.error("Auth Error!");
-    return Observable.throw(e.json().message);
+    return Observable.throw(error.json().message);
   }
 
   signup(username: string, name: string, email: string, city: string, password: string) {

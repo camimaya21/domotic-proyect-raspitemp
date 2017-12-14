@@ -7,15 +7,12 @@ import { environment } from '../environments/environment';
 
 const BASEURL = environment.BASEURL;
 const BASEURL_TEST = environment.BASEURL + "/test";
-const URL_TEST = 'http://localhost:3000/test';
 
 @Injectable()
 export class ConfigAcService {
 
   public order: object;
   private options: object = { withCredentials: true };
-
-  private TESTURL = 'http://localhost:3000/test';
 
   constructor(private http: Http) { }
 
