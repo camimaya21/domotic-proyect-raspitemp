@@ -118,6 +118,7 @@ arduinoRoutes.post('/controller', (req, res, next) => {
 
 // ====== Led Test ======
 arduinoRoutes.post('/test', (req, res, next) => {
+  console.log("ENTRO TEST")
   const newTest = new ConfigAC({
     ledtest: req.body.ledtest
   })
@@ -161,7 +162,7 @@ arduinoRoutes.post('/proyector', (req, res, next) => {
 
   function proyect(testProyector) {
     console.log("JESUS", testProyector);
-    if (testProyector.state == '0') {
+    if (testProyector.state == 'ON') {
       console.log("Sending test proyector");
       port.write('0')
     }
