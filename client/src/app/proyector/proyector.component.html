@@ -2,10 +2,16 @@
   proyector works!
 </p>
 
-<div class="onoffswitch">
-    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+<!-- <div class="onoffswitch">
+    <input type="checkbox" [(ngModel)]="proyector.state" name="state" class="onoffswitch-checkbox" id="myonoffswitch" checked>
     <label class="onoffswitch-label" for="myonoffswitch">
       <span class="onoffswitch-inner"></span>
       <span class="onoffswitch-switch"></span>
     </label>
-  </div>
+  </div> -->
+
+  <form>
+    <label>Usa ON para encender o OFF para apagar el led</label>
+    <input type="text" name="ledtest" [(ngModel)]="proyector.state">
+    <button (click)="onProyector()">Proyector</button>
+  </form>

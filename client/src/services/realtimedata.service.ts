@@ -3,10 +3,9 @@ import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { Observable } from 'rxjs/Rx';
+import {environment} from '../environments/environment';
 
-const BASE_DOMAIN = 'http://localhost:3000';
-const BASE_URL = `${BASE_DOMAIN}`;
-
+const BASEURL = environment.BASEURL + "/realtime";
 
 @Injectable()
 export class RealTimeDataService {
@@ -22,7 +21,7 @@ private options:object ={ withCredentials:true };
 
   public getDataT() {
      console.log("The data is coming!!!!!!!!!!!!!!!!")
-     return this.http.get(`${BASE_URL}/realtime`, this.options)
+     return this.http.get(`${BASEURL}`, this.options)
        .map((res) => res.json())
        .catch(this.handleError)
    }

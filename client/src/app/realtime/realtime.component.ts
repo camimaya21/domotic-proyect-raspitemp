@@ -15,7 +15,6 @@ export class RealtimeComponent implements OnInit{
     {data: [], label: 'C'},
     {data: [], label: '%'},
   ];
-  //public lineChartLabels: Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   public lineChartLabels: Array<any> = ["","","","","","","","","","","","","","","","","","","","","","",""];
   public lineChartColors: Array<any> = [
     { // grey

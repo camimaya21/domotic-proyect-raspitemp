@@ -9,6 +9,7 @@ import { AuthService } from '../services/auth.service';
 import { IsLoggedInService } from '../services/isLoggedIn.canactivate.service';
 import { RealTimeDataService } from '../services/realtimedata.service';
 import { ConfigAcService } from '../services/config-ac.service';
+import { ProyectorService } from '../services/proyector.service';
 
 //Routes
 import { RouterModule } from '@angular/router';
@@ -55,7 +56,8 @@ import { ControllerComponent } from './controller/controller.component';
     AuthService,
     IsLoggedInService,
     RealTimeDataService,
-    ConfigAcService
+    ConfigAcService,
+    ProyectorService
   ],
   bootstrap: [AppComponent]
 })
