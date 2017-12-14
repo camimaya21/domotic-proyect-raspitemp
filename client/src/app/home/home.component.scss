@@ -1,0 +1,41 @@
+$colorOff: #1E565C;
+
+.main {
+  width: 100%;
+  height: 450px;
+  background-image: url('/assets/img/keep-house-warm.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+}
+
+.leftsize{
+    width: 50%;
+    float: left;
+    align-self: center;
+    justify-content: center;
+}
+
+.tabs {
+  height: 100px;
+  justify-content: space-around;
+}
+
+h1 {
+  width: 500px;
+  font-size: 36px;
+  color: $colorOff;
+}
+
+.title {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+}
+
+h1,
+h2,
+a {
+  text-align: center
+}

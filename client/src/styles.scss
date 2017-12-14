@@ -10,14 +10,141 @@ $colorh2: #5E8C91;
 $colorBorder: #327C7E;
 $colorP: #74BEB9;
 $divData: #131313;
-$colorH2: HSBA(0, 0, 0, 20%);
-$shadow: 1px 3px 6x #313131;
+$color2btn: rgba(255, 255, 255, 0.9);
+$shadow: 1px 3px 6px #313131;
 
-
-body{
+body {
+  font-family: sans-serif;
   background-color: $bgcolor;
-  margin-top: 60px;
-  h1, h2, h3, label, p{
+  margin: 70px 0 0 0;
+  padding: 0;
+  h1,
+  h2,
+  h3,
+  label,
+  p {
     color: $white;
   }
 }
+
+button {
+  padding: 10px 30px;
+  background: $colorOn;
+  border: none;
+  box-shadow: $shadow;
+  border-radius: 3%;
+  color: $white;
+  font-weight: bold;
+  letter-spacing: 3px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.secundary-btn {
+  background: $color2btn;
+  border: 1px solid #858585;
+  color: $divData;
+}
+
+.main-btn {
+  background: $colorOn;
+  border: none;
+  color: $white;
+}
+
+section {
+  width: 100%;
+  position: relative;
+  //padding: 5%;
+  text-align: center;
+  display: flex;
+  align-self: center;
+  flex-wrap: wrap;
+}
+
+/*Inicio css botón ON/OFF*/
+
+.onoffswitch {
+  position: absolute;
+  width: 80px;
+  margin-left: 10px;
+  margin-top: 10px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.onoffswitch-checkbox {
+  display: none;
+}
+
+.onoffswitch-label {
+  display: block;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid $colorBorder;
+  border-radius: 20px;
+}
+
+.onoffswitch-inner {
+  display: block;
+  width: 200%;
+  margin-left: -100%;
+  transition: margin 0.3s ease-in 0s;
+}
+
+.onoffswitch-inner:before,
+.onoffswitch-inner:after {
+  display: block;
+  float: left;
+  width: 50%;
+  height: 30px;
+  padding: 0;
+  line-height: 30px;
+  font-size: 14px;
+  color: white;
+  font-family: Trebuchet, Arial, sans-serif;
+  font-weight: bold;
+  box-sizing: border-box;
+}
+
+.onoffswitch-inner:before {
+  content: "OFF";
+  padding-left: 10px;
+  background-color: #0E454A;
+  color: $colorh2;
+  
+}
+
+.onoffswitch-inner:after {
+  content: "ON";
+  padding-right: 10px;
+  background-color: $colorOn;
+  color: $white;
+  text-align: right;
+}
+
+.onoffswitch-switch {
+  display: block;
+  width: 35px;
+  margin: -2.5px;
+  background: $white;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 46px;
+  border: 1px solid $colorBorder;
+  border-radius: 20px;
+  transition: all 0.3s ease-in 0s;
+}
+
+.onoffswitch-checkbox:checked+.onoffswitch-label .onoffswitch-inner {
+  margin-left: 0;
+}
+
+.onoffswitch-checkbox:checked+.onoffswitch-label .onoffswitch-switch {
+  right: 0px;
+}
+
+
+/*fin css botón ON/OFF*/

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from '../../services/auth.service';
-import { Router , ActivatedRoute} from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -8,11 +8,11 @@ import { Router , ActivatedRoute} from '@angular/router';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  user:object;
-  constructor(public auth:AuthService) {
+  user: object;
+  constructor(public auth: AuthService) {
     this.user = this.auth.getUser();
     this.auth.getLoginEventEmitter()
-        .subscribe(user => this.user = user);
+      .subscribe(user => this.user = user);
   }
 
   ngOnInit() {
@@ -20,6 +20,6 @@ export class NavbarComponent implements OnInit {
 
 
   logout() {
-      this.auth.logout().subscribe();
-    }
+    this.auth.logout().subscribe();
+  }
 }

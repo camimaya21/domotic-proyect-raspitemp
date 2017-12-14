@@ -1,1 +1,27 @@
-<h1>Welcome to Raspitemp!</h1>
+<section class="main">
+  <div class="leftsize">
+    <div class="title">
+      <h1>
+        Controla el Aire Acondicionado y Calefacción...
+        <br> sin estar en casa ;)
+      </h1>
+    </div>
+    <a *ngIf="!user" [routerLink]="['/login']">
+      <button class="main-btn">Login</button>
+    </a>
+    <a *ngIf="user" [routerLink]="['/dashboard']">
+      <button class="main-btn">Dashboard</button>
+    </a>
+  </div>
+</section>
+<section class="tabs">
+  <div class="title">
+    <h2>Be part of Raspitemp!</h2>
+  </div>
+  <a *ngIf="!user" [routerLink]="['/signup']">
+    <button class="secundary-btn">Sign up</button>
+  </a>
+  <a *ngIf="user" [routerLink]="['/realtime']">
+    <button class="secundary-btn">Temperature RealTime</button>
+  </a>
+</section>

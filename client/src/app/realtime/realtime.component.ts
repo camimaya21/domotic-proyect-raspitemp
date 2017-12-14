@@ -15,10 +15,12 @@ export class RealtimeComponent implements OnInit{
     {data: [], label: 'C'},
     {data: [], label: '%'},
   ];
-  public lineChartLabels: Array<any> = [];
+  //public lineChartLabels: Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  public lineChartLabels: Array<any> = [
+    {data: []}
+  ];
   public printData: Array<number>;
-  public lineChartColors: Array<any> = 
-  this.lineChartColors = [
+  public lineChartColors: Array<any> = [
     { // grey
       backgroundColor: 'rgba(148,159,177,0.2)',
       borderColor: 'rgba(148,159,177,0)',
@@ -58,7 +60,7 @@ export class RealtimeComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.interval = setInterval(() => { this.realTimeChart() }, 1000);
+    this.interval = setInterval(() => { this.realTimeChart() }, 3000);
     
   }
 
@@ -79,14 +81,14 @@ export class RealtimeComponent implements OnInit{
       })
       .subscribe(data => {
         this.lineChartData =  [
-          {data: [...this.lineChartData[0].data, ...data.temperature[0]],  label: 'C'},
-          {data: [...this.lineChartData[1].data, ...data.humidity[0]],  label: '%'},
+          {data: [...this.lineChartData[0].data, ...data.temperature[data.temperature.length-1]],  label: 'C'},
+          {data: [...this.lineChartData[1].data, ...data.humidity[data.humidity.length-1]],  label: '%'},
         ];
-        this.lineChartLabels = [...this.lineChartLabels, ...data.date[0]];
-        console.log(this.lineChartData);
+       this.lineChartLabels = [...this.lineChartLabels, ...data.date];
+       console.log(this.lineChartData);
+       console.log(this.lineChartLabels);
       })
   }
-
 
 
   // events
@@ -96,15 +98,6 @@ export class RealtimeComponent implements OnInit{
 
   public chartHovered(e: any): void {
     console.log(e);
-    // { data: data[0], label: 'ºC' },
-    // { data: data[1], label: '%' } ];
-    // console.log("LINECHARTDAATA");
-    // console.log(this.lineChartData)
-
-    // this.lineChartType = 'line';
-    // this.lineChartLabels = data[2];
-    // console.log("dates!!!" + this.lineChartLabels)
-    // this.lineChartLegend = true;
 
   }
 

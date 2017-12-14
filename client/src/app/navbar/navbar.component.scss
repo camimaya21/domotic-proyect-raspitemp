@@ -1,13 +1,17 @@
-$bgcolor: #004951;
+$bgcolor: rgba(0, 0, 0, 0.75);
 $bgcolorHover: #05614A;
 $white: #fff;
 $colorOn: #0DC983;
 
+nav{
+  padding: 0;
+  margin: 0;
+}
 .menu {
-  width: 100vw;
+  width: 100%;
   margin:0;
-  height: 40px;
-  background-color: $bgcolorHover;
+  height: 80px;
+  background-color: $bgcolor;
   position: fixed;
   top: 0;
   right: 0;
@@ -21,16 +25,12 @@ $colorOn: #0DC983;
     list-style: none;
     width: auto;
     align-self: center;
-    height: 14px;
     font-family: sans-serif;
     font-size: 14px;
     color: $white;
     text-align: center;
     letter-spacing: 1px;
-
-    &:hover {
-      background-color: $bgcolorHover;
-    }
+    margin-right: 10px; 
   }
 
   a {
@@ -38,11 +38,17 @@ $colorOn: #0DC983;
     color: $white;
   }
 
+  .logoHome{
+    height: 40px
+  }
+   
+
+
   .open-hide {
     position: absolute;
     bottom: 0;
     right: 20px;
-    width: 61px;
+    width: 100vh;
     height: 61px;
     display: block;
     background-size: 61px;
