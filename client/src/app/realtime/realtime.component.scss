@@ -1,8 +1,42 @@
-.chart{
-    width: 90%;
-    height: 100px;  
-}
 canvas{
-    width: 90%;
+    width: 100%;
     height: 100px;
+}
+
+#dash-controller{
+    justify-content: center;
+}
+
+.sec-title{
+    width: 900px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}
+
+.container{
+    width: 1200px;
+    height: 600px;
+    display: flex;
+    justify-content: space-around;
+    align-self: center;
+    flex-wrap: wrap;
+}
+
+@media (min-width: 900px){
+    .container{
+        align-content: space-around;
+    }
+}
+
+@media (min-width: 400px) {
+    .container{
+        font-size: 14px;
+    }
+    .sec-title{
+        height: 30px;
+        line-height: 24px;
+        margin-bottom: 10px;
+    }
 }

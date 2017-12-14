@@ -23,7 +23,7 @@ void setup()
   irdaikin.sendCommand();  
   irdaikin.description(); 
   isOn = 0;*/
- Serial.println("I'm ready");
+// Serial.println("I'm ready");
 }
 
 void loop() {
@@ -36,21 +36,21 @@ void loop() {
              irdaikin.setMode(3);
              irdaikin.setFan(4);//FAN speed to MAX
              irdaikin.setTemp(25);
-             Serial.println("\n\nTurn On\n\n"); 
+             //Serial.println("\n\nTurn On\n\n"); 
              irdaikin.sendCommand();       
              delay(3000);
              //irdaikin.description();
          }
          else if (state == '0'){
              irdaikin.off(); 
-             Serial.println("\n\nTurn Off\n\n");              
+             //Serial.println("\n\nTurn Off\n\n");              
              irdaikin.sendCommand();   
              delay(3000);    
              //irdaikin.description();
              delay(3000);            
              }
          else {
-          Serial.println("\n\nNo se ha recibido un caracter correcto\n\n");
+          //Serial.println("\n\nNo se ha recibido un caracter correcto\n\n");
          }
       
      }

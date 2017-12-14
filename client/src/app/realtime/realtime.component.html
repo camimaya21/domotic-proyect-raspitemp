@@ -1,6 +1,11 @@
 
-    <div style="display: block;">
-    <canvas baseChart width="400" height="100"
+   <section id="tests">
+        <h1 class="sec-title">
+          Check your home RealTime Tempº
+        </h1>
+        <article class="container">
+   <div style="display: block;">
+    <canvas baseChart width="600" height="250"
                 [datasets]="lineChartData"
                 [labels]="lineChartLabels"
                 [options]="lineChartOptions"
@@ -10,4 +15,5 @@
                 (chartHover)="chartHovered($event)"
                 (chartClick)="chartClicked($event)"></canvas>
     </div>
-  
+</article>
+</section>

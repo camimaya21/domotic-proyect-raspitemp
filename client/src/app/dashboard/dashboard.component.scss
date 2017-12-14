@@ -18,5 +18,16 @@
     justify-content: space-around;
     align-self: center;
     flex-wrap: wrap;
-    align-content: space-around;
+}
+
+@media (min-width: 900px){
+    .container{
+        align-content: space-around;
+    }
+}
+
+@media (max-width: 400px) {
+    .container{
+        font-size: 14px;
+    }
 }

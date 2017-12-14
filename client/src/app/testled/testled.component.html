@@ -1,9 +1,15 @@
-<p>
-  testled works!
-</p>
-
-<form>
-<label>Usa H para encender o L para apagar el led</label>
-  <input type="text" name="ledtest" [(ngModel)]="ledtest">
-  <button (click)="sendOrder()">Test Arduino</button>
-</form>
+<section id="tests">
+  <h1 class="sec-title">
+    Control your home from your mobile
+  </h1>
+  <article class="container">
+    <form>
+      <label>Usa H para encender o L para apagar el led</label>
+      <input type="text" name="ledtest" [(ngModel)]="ledtest">
+      <button (click)="sendOrder()">Test Arduino</button>
+    </form>
+    <br>
+    <br>
+    <app-proyector></app-proyector>
+  </article>
+</section>
