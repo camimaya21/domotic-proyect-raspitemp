@@ -135,10 +135,10 @@ arduinoRoutes.post('/test', (req, res, next) => {
   function led(newTest) {
     if (newTest.ledtest === 'H') { //Sending data to Arduino = ON"
       console.log("Sending data to Arduino = ON")
-      port.write('H');
+      port.write('1');
     } else if (newTest.ledtest === 'L') { //"Sending data to Arduino = OFF"
       console.log("Sending data to Arduino = OFF")
-      port.write('L');
+      port.write('2');
     }
   }
 })
@@ -164,7 +164,10 @@ arduinoRoutes.post('/proyector', (req, res, next) => {
     console.log("JESUS", testProyector);
     if (testProyector.state == 'ON') {
       console.log("Sending test proyector");
-      port.write('0')
+      port.write('3');
+    } else if (testProyector.state == 'OFF'){
+      console.log("Sending test proyector");
+      port.write('4');
     }
   }
 });
