@@ -7,12 +7,15 @@
 
 #include "DHT.h"
 
-DHT dht;
+#define DHTPIN 4 // data DHT pin 4
+#define DHTTYPE DHT22   // DHT 22  (AM2302), AM2321 
+
+DHT dht(DHTPIN, DHTTYPE); 
 
 void setup()
 {
   Serial.begin(9600);
-  dht.setup(4); // data pin 4
+  dht.begin(); 
  }
 
 void loop() {
@@ -20,8 +23,8 @@ void loop() {
   //delay(dht.getMinimumSamplingPeriod());
   delay(3000);
 
-  float humidity = dht.getHumidity();
-  float temperature = dht.getTemperature();
+  float humidity = dht.readHumidity();
+  float temperature = dht.readTemperature();
 
 // JSON-formatted:
   String jsonSerial = "{\"temperature\":";
