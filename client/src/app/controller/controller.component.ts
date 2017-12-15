@@ -11,7 +11,8 @@ import { RealTimeDataService } from '../../services/realtimedata.service';
 export class ControllerComponent implements OnInit {
 
   public user: object;
-  public realT: any;
+  public data: any;
+  public interval: any;
 
   constructor(
     public auth: AuthService,
@@ -24,12 +25,12 @@ export class ControllerComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.realT = setInterval(() => { this.realTimeInfo() }, 3000);
+    this.interval = setInterval(() => { this.realTimeInfo() }, 3000);
 
   }
 
   ngOnDestroy() {
-    clearInterval(this.realT);
+    clearInterval(this.interval);
   }
 
   public realTimeInfo(){
@@ -37,9 +38,9 @@ export class ControllerComponent implements OnInit {
     this.realTimeService.getDataT()
       .map(data =>{
         let temperature = data.map(t => Number(t.temperature));
-        console.log(temperature)
         return temperature
       })
+      .subscribe(data => {this.data = data})
 
   }
 

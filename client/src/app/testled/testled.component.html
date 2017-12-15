@@ -3,13 +3,13 @@
     Control your home from your mobile
   </h1>
   <article class="container">
-    <form>
+    <form class="leftsize">
       <label>Usa H para encender o L para apagar el led</label>
       <input type="text" name="ledtest" [(ngModel)]="orderInfo.ledtest">
       <button (click)="sendOrder()">Test Arduino</button>
     </form>
     <br>
     <br>
-    <app-proyector></app-proyector>
+    <app-proyector class="rightsize"></app-proyector>
   </article>
 </section>

@@ -10,7 +10,7 @@ nav{
 .menu {
   width: 100%;
   margin:0;
-  height: 80px;
+  height: 70px;
   background-color: $bgcolor;
   position: fixed;
   top: 0;
@@ -30,7 +30,7 @@ nav{
     color: $white;
     text-align: center;
     letter-spacing: 1px;
-    margin-right: 10px; 
+    margin-right: 10px;
   }
 
   a {
@@ -41,8 +41,6 @@ nav{
   .logoHome{
     height: 40px
   }
-   
-
 
   .open-hide {
     position: absolute;
