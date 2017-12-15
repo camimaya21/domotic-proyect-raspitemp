@@ -2,8 +2,8 @@
   <div class="leftsize">
     <div class="title">
       <h1>
-        Controla el Aire Acondicionado y Calefacción...
-        <br> sin estar en casa ;)
+        <strong>Controla la Temperatura</strong> de tu hogar...
+        <b> sin estar en casa ;)</b>
       </h1>
     </div>
     <a *ngIf="!user" [routerLink]="['/login']">
@@ -15,13 +15,13 @@
   </div>
 </section>
 <section class="tabs">
-  <div class="title">
-    <h2>Be part of Raspitemp!</h2>
+  <div class="title subtitle">
+    <h2>Be part of Raspitempº</h2>
   </div>
   <a *ngIf="!user" [routerLink]="['/signup']">
     <button class="secundary-btn">Sign up</button>
   </a>
   <a *ngIf="user" [routerLink]="['/realtime']">
-    <button class="secundary-btn">Temperature RealTime</button>
+    <button class="secundary-btn">RealTime Tº</button>
   </a>
 </section>

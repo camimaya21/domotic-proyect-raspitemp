@@ -16,7 +16,7 @@ $shadow: 1px 3px 6px #313131;
 body {
   font-family: sans-serif;
   background-color: $bgcolor;
-  margin: 70px 0 0 0;
+  margin: 60px 0 0 0;
   padding: 0;
   h1,
   h2,
@@ -60,4 +60,17 @@ section {
   display: flex;
   align-self: center;
   flex-wrap: wrap;
+}
+
+.leftsize{
+    width: 50%;
+    float: left;
+    align-self: center;
+    justify-content: center;
+}
+.rightsize{
+    width: 50%;
+    float: right;
+    align-self: center;
+    justify-content: center;
 }

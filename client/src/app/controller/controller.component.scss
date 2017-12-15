@@ -2,17 +2,20 @@ $colorBorder: #327C7E;
 $white: #fff;
 $colorOn: #0DC983;
 $colorh2: #5E8C91;
+$break-small: 360px;
+$break-large: 1200px;
 
 .control {
-  width: 486px;
-  height: 220px;
-  margin: 20px;
-  border: 1px solid #327C7E;
-  border-radius: 9px;
-  -moz-border-radius: 9px;
-  -webkit-border-radius: 9px;
-  box-shadow: 1px 3px 6px rgba(1, 34, 49, 0.49);
-}
+    width: 486px;
+    height: 220px;
+    margin: 20px;
+    border: 1px solid #327C7E;
+    border-radius: 9px;
+    -moz-border-radius: 9px;
+    -webkit-border-radius: 9px;
+    box-shadow: 1px 3px 6px rgba(1, 34, 49, 0.49);
+  }
+
 
 #modulo1 {
   top: 0px;
@@ -36,22 +39,21 @@ $colorh2: #5E8C91;
 
 .room {
   width: inherit;
-  height: 52px;
+  height: 50px;
   background-color: rgba(0, 0, 0, 0.40);
   border-radius: 9px 9px 0px 0px;
   -moz-border-radius: 9px 9px 0px 0px;
   -webkit-border-radius: 9px 9px 0px 0px;
+  display: flex;
 }
 
 .roomTitulo {
-  position: relative;
-  float: left;
-  font-size: 24px;
+  margin: 0 auto;
+  font-size: 18px;
   color: #5E8C91;
-  text-align: left;
-  margin-top: 12px;
-  margin-left: 130px;
+  text-align: center;
   letter-spacing: 2px;
+  align-self: center;
 }
 
 
@@ -103,7 +105,7 @@ $colorh2: #5E8C91;
 
 .onoffswitch-inner:before {
   content: "OFF";
-  padding-left: 10px;
+  padding-right: 25px;
   background-color: #0E454A;
   color: $colorh2;
 }
@@ -177,7 +179,6 @@ $colorh2: #5E8C91;
 }
 
 .celcius {
-  font-size: 24px;
   color: #FFFFFF;
   text-align: center;
 }
