@@ -1,0 +1,1 @@
+#dash-controller{justify-content:center}.sec-title{width:900px;height:10px;display:flex;justify-content:center;align-self:center}.container{width:1200px;height:600px;display:flex;justify-content:space-around;align-self:center;flex-wrap:wrap}@media (min-width: 900px){.container{align-content:space-around}}@media (max-width: 400px){.container{width:100%;font-size:14px}}

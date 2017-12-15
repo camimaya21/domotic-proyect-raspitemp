@@ -4,7 +4,7 @@
 
 .sec-title{
     width: 900px;
-    height: 50px;
+    height: 10px;
     display: flex;
     justify-content: center;
     align-self: center;
@@ -13,7 +13,6 @@
 .container{
     width: 1200px;
     height: 600px;
-    padding: 3%;
     display: flex;
     justify-content: space-around;
     align-self: center;
@@ -28,6 +27,7 @@
 
 @media (max-width: 400px) {
     .container{
+      width: 100%;
         font-size: 14px;
     }
 }
