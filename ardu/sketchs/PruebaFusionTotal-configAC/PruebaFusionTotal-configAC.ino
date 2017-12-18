@@ -1,10 +1,16 @@
 
 #include <IRremote.h>
 #include "DHT.h"
+#include <DYIRDaikin.h>
 
 #define BENQPower 0xC40BF // BENQ Power button
 #define DHTPIN 4 // data DHT pin 4
 #define DHTTYPE DHT22   // DHT 22  (AM2302), AM2321 
+//#define DYIRDAIKIN_SOFT_IR
+
+
+DYIRDaikin irdaikin;
+int isOn;
 
 DHT dht(DHTPIN, DHTTYPE); 
 
@@ -27,13 +33,19 @@ void setup() {
   irrecv.enableIRIn(); //start the IR receiver
   irrecv.blink13(true); //blink the onboard LED when IR signal received
   dht.begin(); 
+  #ifdef DYIRDAIKIN_SOFT_IR
+  irdaikin.begin(3);
+  #else
+  irdaikin.begin();
+  irdaikin.decodePin(2);
+  #endif 
 }  
 
 void loop() {
   // put your main code here, to run repeatedly:
   if (Serial.available()) {
     char opt = Serial.read();
-    Serial.println(opt);
+    Serial.println(opt); //test order received
     switch (opt){
       case '1':
          digitalWrite(LED_BUILTIN, HIGH);
@@ -46,7 +58,21 @@ void loop() {
       case '3':
          irsend.sendNEC(BENQPower, 32); // hex value, 32 bits
          break;
-   } 
+      case '4': 
+         irdaikin.on();
+         irdaikin.setSwing_off();
+         irdaikin.setMode(3);
+         irdaikin.setFan(3);//FAN speed to MAX
+         irdaikin.setTemp(25);
+         //Serial.println("\n\nTurn On\n\n"); 
+         irdaikin.sendCommand();     
+         break;
+       case '5':
+         irdaikin.off(); 
+         //Serial.println("\n\nTurn Off\n\n");              
+         irdaikin.sendCommand(); 
+         break;  
+    } 
     
   }  
   // check to see if it's time to get data; that is, if the 

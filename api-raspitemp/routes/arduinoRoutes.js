@@ -72,7 +72,7 @@ arduinoRoutes.get('/realtime', (req, res, err) => {
       'created_at': -1
     }
   }, function (err, count, results) {
-    console.log(results);
+  //  console.log(results);
 
     if (err) {
       return res.status(500).json(err)
@@ -102,16 +102,18 @@ arduinoRoutes.post('/controller', (req, res, next) => {
     return res.status(200).json(newOrder)
   });
 
-  console.log(newOrder);
+  console.log("soy... "+newOrder);
   sendOrder(newOrder);
 
   function sendOrder(order) {
     if (newOrder.state === 'ON') { //"Sending order to turn ON the AC"
       console.log("Turn On AC!!!");
       port.write('1')
+     //  port.write('4')
     } else if (newOrder.state === 'OFF') { //"Sending order to turn OFF the AC"
       console.log("Turn OFF AC!!!");
       port.write('0')
+      // port.write('5')
     }
   }
 })

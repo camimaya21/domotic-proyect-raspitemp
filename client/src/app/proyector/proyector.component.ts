@@ -4,19 +4,30 @@ import { ProyectorService } from '../../services/proyector.service';
 import { Router , ActivatedRoute} from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
+interface proyector {
+  state: string
+}
+
 @Component({
   selector: 'app-proyector',
   templateUrl: './proyector.component.html',
   styleUrls: ['./proyector.component.scss']
 })
-export class ProyectorComponent {
+export class ProyectorComponent implements OnInit{
 
-    proyector = {
-      state:"",
-    }
+   public proyector 
+   public states =[
+    { value: "ON", display: "ON" },
+    { value: "OFF", display:"OFF" }
+   ]
 
   constructor(public pro:ProyectorService, public auth:AuthService, public router: Router, public route: ActivatedRoute) { }
 
+  ngOnInit(){
+    this.proyector = {
+      state: this.states[0].value
+    }
+  }
 
 
   onProyector(){

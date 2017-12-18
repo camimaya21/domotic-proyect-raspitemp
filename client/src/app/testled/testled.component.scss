@@ -13,11 +13,20 @@
 .container{
     width: 1200px;
     height: 600px;
-    padding: 3%;
     display: flex;
-    //justify-content: space-around;
+    justify-content: space-around;
     align-self: center;
     flex-wrap: wrap;
-    flex-direction: column;
-   // align-content: space-around;
+    flex-direction: row;
+    align-content: space-around;
+}
+
+.leftside{
+    text-align: center;
+}
+
+.rightside{
+    text-align: center;
+    display: flex;
+    align-content: center;
 }

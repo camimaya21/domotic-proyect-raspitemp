@@ -23,7 +23,6 @@ export class ConfigAcService {
 
   public sendOrderAC(room: string, state: string, setTemp: string,
     mode: string, fanSpeed: string, swing: string) {
-    console.log("Bring it on baby!!!!")
     return this.http.post(`${BASEURL}/controller`, {
       room, state, setTemp, mode, fanSpeed, swing
     }, this.options)

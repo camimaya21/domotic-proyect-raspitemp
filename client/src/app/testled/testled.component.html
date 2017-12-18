@@ -3,13 +3,24 @@
     Control your home from your mobile
   </h1>
   <article class="container">
-    <form class="leftsize">
-      <label>Usa H para encender o L para apagar el led</label>
-      <input type="text" name="ledtest" [(ngModel)]="orderInfo.ledtest">
-      <button (click)="sendOrder()">Test Arduino</button>
-    </form>
+    <div class="leftside">
+      <h2>TEST LED</h2>
+      <div (click)="sendOrder()" class="onoffswitch">
+        <input type="hidden" name="ledtest" [(ngModel)]="orderInfo.ledtest">
+        <div>
+          <input type="checkbox" [checked]="orderInfo.ledtest === ledtests[0].value" (change)="$event.target.checked? (orderInfo.ledtest = ledtests[0].value) : (orderInfo.ledtest = ledtests[1].value)"
+            name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch2">
+          <label class="onoffswitch-label" for="myonoffswitch2">
+            <span class="onoffswitch-inner"></span>
+            <span class="onoffswitch-switch"></span>
+          </label>
+        </div>
+      </div>
+    </div>
     <br>
     <br>
-    <app-proyector class="rightsize"></app-proyector>
+    <div class="rightside">
+      <app-proyector></app-proyector>
+    </div>
   </article>
 </section>
