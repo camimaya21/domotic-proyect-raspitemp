@@ -20,7 +20,6 @@ private options:object ={ withCredentials:true };
   }
 
   public getDataT() {
-     console.log("The data is coming!!!!!!!!!!!!!!!!")
      return this.http.get(`${BASEURL}`, this.options)
        .map((res) => res.json())
        .catch(this.handleError)

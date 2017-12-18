@@ -1,91 +1,97 @@
 <div class="control" id="modulo1">
-  <div class="room">
-    <!-- Botón Encendido ON/OFF-->
-    <div class="onoffswitch">
-      <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
-      <label class="onoffswitch-label" for="myonoffswitch">
+  <form #userForm="ngForm" (ngSubmit)="onFormSubmit(userForm)">
+    <div class="room">
+      <!-- Botón Encendido ON/OFF-->
+      <div (click)="powerAC()" class="onoffswitch">
+        <input type="hidden" name="state" [(ngModel)]="acOrder.state">
+        <div>
+          <input type="checkbox" [checked]="acOrder.state === states[0].value" (change)="$event.target.checked? (acOrder.state = states[0].value) : (acOrder.state = states[1].value)" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch">
+          <label class="onoffswitch-label" for="myonoffswitch">
         <span class="onoffswitch-inner"></span>
         <span class="onoffswitch-switch"></span>
       </label>
+        </div>
+      </div>
+      <div class="roomTitulo">Habitación Principal</div>
+      <!-- <button type="submit" (click)="sendOrderAC()" name="button">send Order</button> -->
     </div>
-    <div class="roomTitulo">Habitación Principal</div>
-  </div>
-  <div class="tActual">
-    <div class="titulo">Tº Actual</div>
-    <div class="campo sizeTActual">
-      <p class="temperatura">{{data}}</p>
+    <div class="tActual">
+      <div class="titulo">Tº Actual</div>
+      <div class="campo sizeTActual">
+        <p class="temperatura">{{data}}</p>
+        <p class="celcius">ºC</p>
+
+      </div>
+    </div>
+    <div class="aire">
+      <div class="titulo">Tº AireC</div>
+      <div class="campo sizeTAire"></div>
+      <p class="temperatura">
+        <span>25</span>
+      </p>
       <p class="celcius">ºC</p>
+    </div>
+    <div class="mode">
+      <div class="titulo">Swing</div>
+      <div class="campo sizeMode">
+        <!-- Swing -->
+        <img class="swingOn iconmode ocultar" src="/assets/img/swingOn.png" alt="swing On">
+        <img class="swingOff iconmode mostrar" src="/assets/img/swingOff.png" alt="swing Off">
 
+      </div>
     </div>
-  </div>
-  <div class="aire">
-    <div class="titulo">Tº AireC</div>
-    <div class="campo sizeTAire"></div>
-    <p class="temperatura">
-      <span>25</span>
-    </p>
-    <p class="celcius">ºC</p>
-  </div>
-  <div class="mode">
-    <div class="titulo">Swing</div>
-    <div class="campo sizeMode">
-      <!-- Swing -->
-      <img class="swingOn iconmode ocultar" src="/assets/img/swingOn.png" alt="swing On">
-      <img class="swingOff iconmode mostrar" src="/assets/img/swingOff.png" alt="swing Off">
+    <div class="mode">
+      <div class="titulo">Modo</div>
+      <div class="campo sizeMode">
+        <!-- Modo calefacción -->
+        <img class="heatOn iconmode mostrar" src="/assets/img/SunOn.png" alt="Calor On">
+        <img class="heatOff iconmode ocultar" src="/assets/img/sunOff.png" alt="Calor Off">
+        <!-- Modo aire acondicionado -->
+        <img class="coldOn iconmode ocultar" src="/assets/img/snowOn.png" alt="Frio On">
+        <img class="coldOff iconmode ocultar" src="/assets/img/snowOff.png" alt="Frio Off">
+        <!-- Modo ventilador -->
+        <img class="fanOn iconmode ocultar" src="/assets/img/fanOn.png" alt="fan On">
+        <img class="fanOff iconmode ocultar" src="/assets/img/fanOff.png" alt="fan Off">
+        <!-- Modo automático -->
+        <img class="autoOn iconmode ocultar" src="/assets/img/autoOn.png" alt="auto On">
+        <img class="autoOff iconmode ocultar" src="/assets/img/autoOff.png" alt="auto Off">
+        <!-- Modo humedad -->
+        <img class="humedOn iconmode ocultar" src="/assets/img/humedOn.png" alt="humed On">
+        <img class="humedOff iconmode ocultar" src="/assets/img/humedOff.png" alt="humed Off">
+      </div>
+    </div>
+    <div class="mode">
+      <div class="titulo">Programar</div>
+      <div class="campo sizeMode">
+        <!-- Agenda Programar -->
+        <img class="calenOn iconmode ocultar" src="/assets/img/calenOn.png" alt="Agenda On">
+        <img class="calenOff iconmode mostrar" src="/assets/img/calenOff.png" alt="Agenda Off">
 
+      </div>
     </div>
-  </div>
-  <div class="mode">
-    <div class="titulo">Modo</div>
-    <div class="campo sizeMode">
-      <!-- Modo calefacción -->
-      <img class="heatOn iconmode mostrar" src="/assets/img/SunOn.png" alt="Calor On">
-      <img class="heatOff iconmode ocultar" src="/assets/img/sunOff.png" alt="Calor Off">
-      <!-- Modo aire acondicionado -->
-      <img class="coldOn iconmode ocultar" src="/assets/img/snowOn.png" alt="Frio On">
-      <img class="coldOff iconmode ocultar" src="/assets/img/snowOff.png" alt="Frio Off">
-      <!-- Modo ventilador -->
-      <img class="fanOn iconmode ocultar" src="/assets/img/fanOn.png" alt="fan On">
-      <img class="fanOff iconmode ocultar" src="/assets/img/fanOff.png" alt="fan Off">
-      <!-- Modo automático -->
-      <img class="autoOn iconmode ocultar" src="/assets/img/autoOn.png" alt="auto On">
-      <img class="autoOff iconmode ocultar" src="/assets/img/autoOff.png" alt="auto Off">
-      <!-- Modo humedad -->
-      <img class="humedOn iconmode ocultar" src="/assets/img/humedOn.png" alt="humed On">
-      <img class="humedOff iconmode ocultar" src="/assets/img/humedOff.png" alt="humed Off">
+    <div class="mode">
+      <div class="titulo">Velocidad</div>
+      <div class="campo sizeMode">
+        <!-- Velocidad Noche -->
+        <img class="nightOn iconmode ocultar" src="/assets/img/nightOn.png" alt="night On">
+        <img class="nightOff iconmode ocultar" src="/assets/img/nightOff.png" alt="night Off">
+        <!-- Velocidad automática -->
+        <img class="velautoOn iconmode ocultar" src="/assets/img/autoOn.png" alt="velauto On">
+        <img class="velautoOff iconmode ocultar" src="/assets/img/autoOff.png" alt="velauto Off">
+        <!-- Velocidad niveles OFF -->
+        <img class="nivelOff iconvel ocultar" src="/assets/img/nivelOff.png" alt="nivel Off">
+        <!-- Velocidad nivel 1 -->
+        <img class="InivelOn iconvel ocultar" src="/assets/img/1_nivelOn.png" alt="1nivel On">
+        <!-- Velocidad nivel 2 -->
+        <img class="IInivelOn iconvel ocultar" src="/assets/img/2_nivelOn.png" alt="2nivel On">
+        <!-- Velocidad nivel 3 -->
+        <img class="IIInivelOn iconvel ocultar" src="/assets/img/3_nivelOn.png" alt="3nivel On">
+        <!-- Velocidad nivel 4 -->
+        <img class="VInivelOn iconvel ocultar" src="/assets/img/4_nivelOn.png" alt="4nivel On">
+        <!-- Velocidad nivel 5 -->
+        <img class="VnivelOn iconvel mostrar" src="/assets/img/5_nivelOn.png" alt="5nivel On">
+      </div>
     </div>
-  </div>
-  <div class="mode">
-    <div class="titulo">Programar</div>
-    <div class="campo sizeMode">
-      <!-- Agenda Programar -->
-      <img class="calenOn iconmode ocultar" src="/assets/img/calenOn.png" alt="Agenda On">
-      <img class="calenOff iconmode mostrar" src="/assets/img/calenOff.png" alt="Agenda Off">
-
-    </div>
-  </div>
-  <div class="mode">
-    <div class="titulo">Velocidad</div>
-    <div class="campo sizeMode">
-      <!-- Velocidad Noche -->
-      <img class="nightOn iconmode ocultar" src="/assets/img/nightOn.png" alt="night On">
-      <img class="nightOff iconmode ocultar" src="/assets/img/nightOff.png" alt="night Off">
-      <!-- Velocidad automática -->
-      <img class="velautoOn iconmode ocultar" src="/assets/img/autoOn.png" alt="velauto On">
-      <img class="velautoOff iconmode ocultar" src="/assets/img/autoOff.png" alt="velauto Off">
-      <!-- Velocidad niveles OFF -->
-      <img class="nivelOff iconvel ocultar" src="/assets/img/nivelOff.png" alt="nivel Off">
-      <!-- Velocidad nivel 1 -->
-      <img class="InivelOn iconvel ocultar" src="/assets/img/1_nivelOn.png" alt="1nivel On">
-      <!-- Velocidad nivel 2 -->
-      <img class="IInivelOn iconvel ocultar" src="/assets/img/2_nivelOn.png" alt="2nivel On">
-      <!-- Velocidad nivel 3 -->
-      <img class="IIInivelOn iconvel ocultar" src="/assets/img/3_nivelOn.png" alt="3nivel On">
-      <!-- Velocidad nivel 4 -->
-      <img class="VInivelOn iconvel ocultar" src="/assets/img/4_nivelOn.png" alt="4nivel On">
-      <!-- Velocidad nivel 5 -->
-      <img class="VnivelOn iconvel mostrar" src="/assets/img/5_nivelOn.png" alt="5nivel On">
-    </div>
-  </div>
+  </form>
 </div>
 <!-- Fin Módulo Habitación Principal -->

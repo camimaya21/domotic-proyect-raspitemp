@@ -4,12 +4,12 @@ const MODES = require('./modes.js')
 const FAN = require('./fan.js')
 
 const configACSchema = new Schema({
-  room: Number,
-  state: { type: String},// enum: [0, 1], default: 0 },
-  setTemp: { type: Number, min: 18, max: 30, default: 25 },
-  mode: { type: Number, enum: MODES, default: 4 },
-  fanSpeed: { type: Number, enum: FAN, default: 6 },
-  swing: { type: Number, enum: [0, 1], default: 0},
+  room: String,
+  state: { type: String, default: "OFF"},
+  setTemp: { type: String, min: 18, max: 30, default: 25 },
+  mode: { type: String, enum: MODES, default: 3 },
+  fanSpeed: { type: String, enum: FAN, default: 3 },
+  swing: { type: String, default: "OFF"},
   calendar: Date,
   ledtest: { type: String, enum: ['H', 'L'], default:'L' } //creado solo para el test del Led
 },{

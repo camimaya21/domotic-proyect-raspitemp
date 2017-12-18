@@ -34,7 +34,7 @@ void loop() {
              irdaikin.on();
              irdaikin.setSwing_off();
              irdaikin.setMode(3);
-             irdaikin.setFan(4);//FAN speed to MAX
+             irdaikin.setFan(3);//FAN speed to MAX
              irdaikin.setTemp(25);
              //Serial.println("\n\nTurn On\n\n"); 
              irdaikin.sendCommand();       

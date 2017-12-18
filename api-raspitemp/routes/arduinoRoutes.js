@@ -50,7 +50,7 @@ parser.on('data', data => {
   const newData = new TempGraph({
     temperature: tempData.temperature,
     humidity: tempData.humidity,
-    fecha: currentDate.getHours()+":"+currentDate.getMinutes()+":"+currentDate.getSeconds()    
+    fecha: currentDate.getHours()+":"+currentDate.getMinutes()+":"+currentDate.getSeconds()
   })
 
   newData.save()
@@ -106,10 +106,11 @@ arduinoRoutes.post('/controller', (req, res, next) => {
   sendOrder(newOrder);
 
   function sendOrder(order) {
-    if (newOrder.state === '1') { //"Sending order to turn ON the AC"
-      console.log("order!!!!!!!!!!!!!!!!!!!");
+    if (newOrder.state === 'ON') { //"Sending order to turn ON the AC"
+      console.log("Turn On AC!!!");
       port.write('1')
-    } else if (newOrder.state === '0') { //"Sending order to turn OFF the AC"
+    } else if (newOrder.state === 'OFF') { //"Sending order to turn OFF the AC"
+      console.log("Turn OFF AC!!!");
       port.write('0')
     }
   }

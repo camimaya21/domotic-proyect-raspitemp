@@ -10,10 +10,10 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./testled.component.scss']
 })
 export class TestledComponent {
-  orderInfo = {
+  public orderInfo = {
     ledtest:"",
   }
-    
+
   constructor(public order:ConfigAcService) { }
 
   sendOrder(){
