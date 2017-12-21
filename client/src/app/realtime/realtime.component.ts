@@ -3,6 +3,14 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { RealTimeDataService } from '../../services/realtimedata.service';
 
+function zeroArray(n, value:any = 0){
+  let a = [];
+  for(var i = 0; i<n;i++){
+    a.push(value);
+  }
+  return a;
+}
+
 @Component({
   selector: 'app-realtime',
   templateUrl: './realtime.component.html',
@@ -12,10 +20,12 @@ export class RealtimeComponent implements OnInit{
 
   public user: object;
   public lineChartData: Array<any> = [
-    {data: [], label: 'C'},
-    {data: [], label: '%'},
+    {data: zeroArray(20), label: 'C'},
+    {data: zeroArray(20), label: '%'},
   ];
-  public lineChartLabels: Array<any> = ["","","","","","","","","","","","","","","","","","","","","","",""];
+
+
+  public lineChartLabels: Array<any> = zeroArray(20,"");
   public lineChartColors: Array<any> = [
     { // grey
       backgroundColor: 'rgba(148,159,177,0.2)',
@@ -56,8 +66,8 @@ export class RealtimeComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.interval = setInterval(() => { this.realTimeChart() }, 3000);
-    
+    this.interval = setInterval(() => { this.realTimeChart() }, 1000);
+
   }
 
   ngOnDestroy() {
@@ -76,15 +86,23 @@ export class RealtimeComponent implements OnInit{
         };
       })
       .subscribe(data => {
-    
+        const temp = this.lineChartData[0].data
+        temp.shift();
+        temp.push(data.temperature[data.temperature.length-1]);
+        const humi = this.lineChartData[1].data
+        humi.shift();
+        humi.push(data.humidity[data.humidity.length-1])
+        const time = this.lineChartLabels.slice();
+        time.shift()
+        time.push(data.date[data.date.length-1])
+
         this.lineChartData =  [
-          {data: [...this.lineChartData[0].data, ...data.temperature[data.temperature.length-1]],  label: 'C'},
-          {data: [...this.lineChartData[1].data, ...data.humidity[data.humidity.length-1]],  label: '%'},
+          {data: [...temp],  label: 'C'},
+          {data: [...humi],  label: '%'},
         ];
-       this.lineChartLabels = [...this.lineChartLabels, ...data.date];
-       console.log(this.lineChartData);
+       this.lineChartLabels = time;
+       console.log(this.lineChartData[0].data);
        console.log(this.lineChartLabels);
-       console.log(typeof this.lineChartLabels[2])
       })
   }
 
