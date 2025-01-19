@@ -19,7 +19,7 @@
     "express-session": "^1.17.0",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
-    "mongoose": "^5.9.7",
+    "mongoose": "^6.13.6",
     "mongoose-list": "^0.2.2",
     "morgan": "^1.10.0",
     "passport": "^0.4.1",
